@@ -96,7 +96,7 @@ def create_app(db_url=None):
             401,
         )
 
-    @app.before_first_request
+    @app.before_request
     def create_tables():
         db.create_all()
 
