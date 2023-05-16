@@ -42,9 +42,9 @@ def downgrade():
                existing_nullable=False)
 
     with op.batch_alter_table('items', schema=None) as batch_op:
-        batch_op.alter_column('price',
-               existing_type=sa.Float(precision=2),
-               type_=sa.REAL(),
-               existing_nullable=False)
+        batch_op.alter_column('users', 'password',
+                 existing_type=sa.VARCHAR(length=80),
+                type_=sa.String(length=256),
+                existing_nullable=False)
 
     # ### end Alembic commands ###
