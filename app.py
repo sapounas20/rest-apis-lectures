@@ -6,7 +6,8 @@ from flask_jwt_extended import JWTManager
 import secrets
 from flask_migrate import Migrate 
 from dotenv import load_dotenv
-
+import redis
+from rq import queue
 
 import models
 
@@ -20,6 +21,12 @@ from blocklist import BLOCKLIST
 def create_app(db_url=None):
     app = Flask(__name__)
     load_dotenv()
+
+    connection=redis.from_url(
+        os.getenv("REDIS_URL")
+    )
+
+    app.queue= queue("emails",connection=connection)
     app.config["PROPAGATE_EXCEPTIONS"] = True
     app.config["API_TITLE"] = "Stores REST API"
     app.config["API_VERSION"] = "v1"
