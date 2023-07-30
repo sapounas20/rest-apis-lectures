@@ -1,3 +1,3 @@
 # Rest apis lect
 
-thats all 
+this is a demo website based on rest api's lectures on udemy
